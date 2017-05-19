@@ -10,6 +10,15 @@ import java.util.function.Function;
 /**
  * Representation of call results for a single minion implemented as a wrapper around
  * {@link Xor}.
+ * Please use Factory methods `success` and `error` to create new instances of Result.
+ * E.g.
+ * Result.success("foobar")
+ * Result.success("1")
+ *
+ * or
+ *
+ * Result.error("foobar")
+ * Result.error("1") *
  *
  * @param <R> the type of the internal result
  */

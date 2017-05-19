@@ -1,9 +1,8 @@
 package com.suse.salt.netapi.calls.modules;
 
-import com.suse.salt.netapi.calls.LocalCall;
-
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import com.suse.salt.netapi.calls.LocalCall;
 
 import java.time.ZonedDateTime;
 import java.util.Arrays;
@@ -29,6 +28,28 @@ public class Pkg {
 
         public String getSummary() {
             return summary;
+        }
+    }
+
+    /**
+     * Information about a pattern as returned by "pkg.list_patterns".
+     */
+    public static class PatternInfo {
+
+        private String summary;
+        private Boolean installed;
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public Boolean isInstalled() {
+            return installed;
+        }
+
+        @Override
+        public String toString() {
+            return "{Summary: " + summary + ", installed: " + installed + "}";
         }
     }
 
@@ -212,6 +233,13 @@ public class Pkg {
     public static LocalCall<Map<String, Info>> infoAvailable(String... packages) {
         return new LocalCall<>("pkg.info_available", Optional.of(Arrays.asList(packages)),
                 Optional.empty(), new TypeToken<Map<String, Info>>(){});
+    }
+
+    public static LocalCall<Map<String, PatternInfo>> listPatterns(boolean refresh) {
+        LinkedHashMap<String, Object> kwargs = new LinkedHashMap<>();
+        kwargs.put("refresh", refresh);
+        return new LocalCall<>("pkg.list_patterns", Optional.empty(),
+                Optional.of(kwargs), new TypeToken<Map<String, PatternInfo>>(){});
     }
 
     /**
