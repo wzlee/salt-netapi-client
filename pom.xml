@@ -26,6 +26,11 @@
       <email>kwalter@suse.com</email>
       <url>https://github.com/lucidd</url>
     </developer>
+    <developer>
+      <name>Leo Wzlee</name>
+      <email>214508914@qq.com</email>
+      <url>https://github.com/wzlee</url>
+    </developer>
   </developers>
   <scm>
     <connection>scm:git:git@github.com:SUSE/salt-netapi-client.git</connection>
