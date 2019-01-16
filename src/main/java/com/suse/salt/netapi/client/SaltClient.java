@@ -71,8 +71,20 @@ public class SaltClient {
 
         CompletionStage<Token> result = asyncHttpClient
                 .post(uri.resolve("login"), payload, JsonParser.TOKEN)
+//                .exceptionally(e->{
+//                	try {
+//						throw new SaltException("获取token失败");
+//					} catch (SaltException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//                	return null;
+//                })
                 .thenApply(r -> {
                     // They return a list of tokens here, take the first one
+                	if(r == null) {
+                		return null;
+                	}
                     Token token = r.getResult().get(0);
                     return token;
                 });

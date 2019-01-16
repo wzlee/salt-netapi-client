@@ -1,5 +1,6 @@
 package com.suse.salt.netapi.utils;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -14,9 +15,14 @@ import java.util.function.Supplier;
  * @param <L> type of the left value
  * @param <R> type of the right value
  */
-public abstract class Xor<L, R> {
+public abstract class Xor<L, R> implements Serializable{
 
-    public static <L, R> Left<L, R> left(L value) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4603998706321337496L;
+
+	public static <L, R> Left<L, R> left(L value) {
         return new Left<>(value);
     }
 
@@ -59,7 +65,11 @@ public abstract class Xor<L, R> {
      * @param <R> type of the right value
      */
     public static final class Left<L, R> extends Xor<L, R> {
-        private final L left;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 3414853844190828654L;
+		private final L left;
 
         private Left(L left) {
             this.left = left;
@@ -144,7 +154,11 @@ public abstract class Xor<L, R> {
      * @param <R> type of the right value
      */
     public static final class Right<L, R> extends Xor<L, R> {
-        private final R right;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = -7401016016931300016L;
+		private final R right;
 
         private Right(R right) {
             this.right = right;

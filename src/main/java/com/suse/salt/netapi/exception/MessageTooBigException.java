@@ -7,6 +7,11 @@ package com.suse.salt.netapi.exception;
 public class MessageTooBigException extends SaltException {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2041756003820355043L;
+
+	/**
      * Constructor.
      *
      * @param maxMessageLength the maximum message length to be mentioned in the message

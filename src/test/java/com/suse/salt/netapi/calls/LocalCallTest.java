@@ -42,7 +42,7 @@ import java.util.Optional;
  */
 public class LocalCallTest {
 
-    private static final int MOCK_HTTP_PORT = 8888;
+    private static final int MOCK_HTTP_PORT = 8000;
 
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(MOCK_HTTP_PORT);
@@ -68,7 +68,7 @@ public class LocalCallTest {
 
     @Before
     public void init() {
-        URI uri = URI.create("http://localhost:" + Integer.toString(MOCK_HTTP_PORT));
+        URI uri = URI.create("http://192.168.1.152:" + Integer.toString(MOCK_HTTP_PORT));
         client = new SaltClient(uri, new HttpAsyncClientImpl(TestUtils.defaultClient()));
     }
 

@@ -6,6 +6,11 @@ package com.suse.salt.netapi.exception;
 public class SaltException extends Exception {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3248009397285146292L;
+
+	/**
      * Constructor expecting a custom cause.
      *
      * @param cause the cause

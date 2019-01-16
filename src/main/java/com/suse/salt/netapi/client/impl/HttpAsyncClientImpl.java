@@ -117,6 +117,8 @@ public class HttpAsyncClientImpl implements AsyncHttpClient {
                     } catch (Exception e) {
                         future.completeExceptionally(e);
                     }
+                }else if(statusCode == HttpStatus.SC_UNAUTHORIZED) {
+                	future.complete(null);
                 } else {
                     future.completeExceptionally(createSaltException(statusCode));
                 }

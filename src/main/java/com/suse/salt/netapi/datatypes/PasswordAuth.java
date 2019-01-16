@@ -1,17 +1,24 @@
 package com.suse.salt.netapi.datatypes;
 
+import java.io.Serializable;
+
 import com.suse.salt.netapi.AuthModule;
 
 /**
  * Datatype for holding all data needed for password authentication
  */
-public class PasswordAuth {
+public class PasswordAuth implements Serializable {
 
-    private final String username;
-    private final String password;
-    private final AuthModule module;
+	private static final long serialVersionUID = 3626308406445646575L;
+	private String username;
+    private String password;
+    private AuthModule module;
+    
+	public PasswordAuth() {
+		super();
+	}
 
-    public PasswordAuth(String username, String password, AuthModule module) {
+	public PasswordAuth(String username, String password, AuthModule module) {
         this.username = username;
         this.password = password;
         this.module = module;

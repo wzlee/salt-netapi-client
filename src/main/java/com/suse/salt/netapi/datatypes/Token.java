@@ -1,14 +1,17 @@
 package com.suse.salt.netapi.datatypes;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Token containing authentication data.
  */
-public class Token {
+public class Token implements Serializable {
 
-    public Token() {
+	private static final long serialVersionUID = -4803403193313718315L;
+
+	public Token() {
     }
 
     public Token(String token) {

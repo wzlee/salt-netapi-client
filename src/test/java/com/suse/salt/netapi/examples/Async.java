@@ -13,7 +13,7 @@ import java.net.URI;
  */
 public class Async {
 
-    private static final String SALT_API_URL = "http://localhost:8000";
+    private static final String SALT_API_URL = "http://192.168.1.152:8000";
     private static final String USER = "saltdev";
     private static final String PASSWORD = "saltdev";
 
@@ -32,7 +32,7 @@ public class Async {
         };
 
         // Perform a non-blocking login
-        client.login(USER, PASSWORD, AuthModule.AUTO)
+        client.login(USER, PASSWORD, AuthModule.PAM)
                 .thenAccept(t -> System.out.println("Token -> " + t.getToken()))
                 .thenRun(cleanup);
     }

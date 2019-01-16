@@ -3,6 +3,7 @@ package com.suse.salt.netapi.results;
 import com.suse.salt.netapi.errors.SaltError;
 import com.suse.salt.netapi.utils.Xor;
 
+import java.io.Serializable;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -13,11 +14,16 @@ import java.util.function.Function;
  *
  * @param <R> the type of the internal result
  */
-public class Result<R> {
+public class Result<R> implements Serializable {
 
-    private final Xor<SaltError, R> xor;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6879459637508692021L;
+	
+	private final Xor<SaltError, R> xor;
 
-    public static <T> Result<T> success(T r) {
+	public static <T> Result<T> success(T r) {
         return new Result<>(Xor.right(r));
     }
 

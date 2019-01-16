@@ -6,7 +6,12 @@ package com.suse.salt.netapi.exception;
  */
 public class SaltUserUnauthorizedException extends SaltException {
 
-    public SaltUserUnauthorizedException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7878066448945645162L;
+
+	public SaltUserUnauthorizedException(String message) {
         super(message);
     }
 }

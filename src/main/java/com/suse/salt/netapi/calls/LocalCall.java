@@ -308,8 +308,8 @@ public class LocalCall<R> extends AbstractCall<R> {
         Type map = parameterizedType(null, Map.class, String.class, xor);
         Type listType = parameterizedType(null, List.class, map);
         Type wrapperType = parameterizedType(null, Return.class, listType);
-        TypeToken<Return<List<Map<String, Result<R>>>>> typeToken =
-                (TypeToken<Return<List<Map<String, Result<R>>>>>) TypeToken.get(wrapperType);
+        @SuppressWarnings("unchecked")
+		TypeToken<Return<List<Map<String, Result<R>>>>> typeToken = (TypeToken<Return<List<Map<String, Result<R>>>>>) TypeToken.get(wrapperType);
 
         return client.call(this,
                 clientType,
@@ -329,7 +329,8 @@ public class LocalCall<R> extends AbstractCall<R> {
      * @param auth authentication credentials to use
      * @return a map containing the results with the minion name as key
      */
-    public CompletionStage<Map<String, Result<SSHResult<R>>>> callSyncSSH(final SaltClient client,
+    @SuppressWarnings("unchecked")
+	public CompletionStage<Map<String, Result<SSHResult<R>>>> callSyncSSH(final SaltClient client,
             SSHTarget<?> target, SaltSSHConfig cfg, AuthMethod auth) {
         Map<String, Object> args = new HashMap<>();
         args.putAll(getPayload());
@@ -347,8 +348,7 @@ public class LocalCall<R> extends AbstractCall<R> {
                 Client.SSH,
                 Optional.of(target),
                 args,
-                (TypeToken<Return<List<Map<String, Result<SSHResult<R>>>>>>)
-                        TypeToken.get(wrapperType), auth)
+                (TypeToken<Return<List<Map<String, Result<SSHResult<R>>>>>>) TypeToken.get(wrapperType), auth)
                 .thenApply(wrapper -> wrapper.getResult().get(0));
     }
 
