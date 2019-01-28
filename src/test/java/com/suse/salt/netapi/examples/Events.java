@@ -21,9 +21,9 @@ import java.net.URI;
  */
 public class Events {
 
-    private static final String SALT_API_URL = "http://localhost:8000";
-    private static final String USER = "saltdev";
-    private static final String PASSWORD = "saltdev";
+    private static final String SALT_API_URL = "http://192.168.1.152:8000";
+    private static final String USER = "leo";
+    private static final String PASSWORD = "123456";
 
     public static void main(String[] args) {
         // Init client and set the timeout to infinite
@@ -44,7 +44,7 @@ public class Events {
 
         try {
             // Get a login token
-            Token token = client.login(USER, PASSWORD, AuthModule.AUTO).toCompletableFuture().join();
+            Token token = client.login(USER, PASSWORD, AuthModule.MYSQL).toCompletableFuture().join();
             System.out.println("Token: " + token.getToken());
 
             // Init the event stream with a basic listener implementation

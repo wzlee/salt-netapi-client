@@ -35,9 +35,9 @@ public class SaltClient {
 
     /** The async connection factory object */
     private final AsyncHttpClient asyncHttpClient;
-    private final URI uri;
+    public final URI uri;
 
-    private final Gson gson = new GsonBuilder().create();
+    public final Gson gson = new GsonBuilder().create();
 
     /**
      * Constructor for connecting to a given URL.
@@ -71,15 +71,15 @@ public class SaltClient {
 
         CompletionStage<Token> result = asyncHttpClient
                 .post(uri.resolve("login"), payload, JsonParser.TOKEN)
-//                .exceptionally(e->{
-//                	try {
-//						throw new SaltException("获取token失败");
-//					} catch (SaltException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//                	return null;
-//                })
+                .exceptionally(e->{
+                	try {
+						throw new SaltException("获取token失败");
+					} catch (SaltException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+                	return null;
+                })
                 .thenApply(r -> {
                     // They return a list of tokens here, take the first one
                 	if(r == null) {
@@ -89,7 +89,8 @@ public class SaltClient {
                     return token;
                 });
 
-        return result;
+    	return result;		
+        
     }
 
     /**

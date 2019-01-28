@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  */
 public class SaltSSH {
 
-    private static final String SALT_API_URL = "http://localhost:8000";
+    private static final String SALT_API_URL = "http://192.168.1.152:8000";
 
     public static void main(String[] args) {
         // Init the client
@@ -36,8 +36,9 @@ public class SaltSSH {
         // Ping all minions using a glob matcher
         SSHTarget<String> globTarget = new Glob("*");
 
-        Token token = client.login("saltdev", "saltdev", AuthModule.AUTO)
+        Token token = client.login("leo", "123456", AuthModule.MYSQL)
                 .toCompletableFuture().join();
+        System.out.println(token.getToken());
         Map<String, Result<SSHResult<Boolean>>> minionResults =
                 Test.ping().callSyncSSH(client, globTarget, sshConfig, new AuthMethod(token))
                         .toCompletableFuture().join();

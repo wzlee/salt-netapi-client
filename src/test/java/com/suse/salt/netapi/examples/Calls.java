@@ -23,10 +23,10 @@ import java.util.stream.Collectors;
  */
 public class Calls {
 
-    private static final String SALT_API_URL = "http://localhost:8000";
-    private static final String USER = "saltdev";
-    private static final String PASSWORD = "saltdev";
-    static final AuthMethod AUTH = new AuthMethod(new PasswordAuth(USER, PASSWORD, AuthModule.AUTO));
+    private static final String SALT_API_URL = "http://192.168.1.152:8000";
+    private static final String USER = "leo";
+    private static final String PASSWORD = "123456";
+    static final AuthMethod AUTH = new AuthMethod(new PasswordAuth(USER, PASSWORD, AuthModule.MYSQL));
 
     public static void main(String[] args) {
         // Init the client

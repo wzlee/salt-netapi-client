@@ -22,15 +22,15 @@ import java.util.Optional;
  */
 public class LocateModule {
 
-    private static final String SALT_API_URL = "http://localhost:8000";
-    private static final String USER = "saltdev";
-    private static final String PASSWORD = "saltdev";
+    private static final String SALT_API_URL = "http://192.168.1.152:8000";
+    private static final String USER = "leo";
+    private static final String PASSWORD = "123456";
 
     public static void main(String[] args) {
         // Init the client
         SaltClient client = new SaltClient(URI.create(SALT_API_URL),
                 new HttpAsyncClientImpl(HttpClientUtils.defaultClient()));
-        Token token = client.login(USER, PASSWORD, AuthModule.AUTO).toCompletableFuture().join();
+        Token token = client.login(USER, PASSWORD, AuthModule.MYSQL).toCompletableFuture().join();
         AuthMethod tokenAuth = new AuthMethod(token);
 
         // Ping all minions using a glob matcher
